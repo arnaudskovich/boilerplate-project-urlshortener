@@ -34,9 +34,9 @@ app.post("/api/shorturl", express.urlencoded({ extended: true }), (req, res) => 
 
 app.get("/api/shorturl/:id", (req, res) => {
 	const id = Number(req.params.id);
-	if (!isNaN(id) || saved.length <= id || id < 0) {
-		return res.json({ error: "No short URL found for the given input" });
-	}
+	console.log(saved);
+	let r = saved[id];
+	if (!r) return res.json({ error: "No short URL found for the given input" });
 	res.redirect(saved[id]);
 });
 
